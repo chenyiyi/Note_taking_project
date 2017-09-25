@@ -10,6 +10,7 @@ import { ErrorService } from "../errors/error.service";
 export class MessageService {
     private messages: Message[] = [];
     messageIsEdit = new EventEmitter<Message>();
+    messageNeedDelete = new EventEmitter<Message>();
 
     constructor(private http: Http, private errorService: ErrorService) {
     }
@@ -43,12 +44,16 @@ export class MessageService {
                 const messages = response.json().obj;
                 let transformedMessages: Message[] = [];
                 for (let message of messages) {
-                    transformedMessages.push(new Message(
-                        message.content,
-                        message.user.firstName,
-                        message._id,
-                        message.user._id)
-                    );
+                    if(message.user == null){
+                        this.messageNeedDelete.emit(message);
+                    }else{
+                        transformedMessages.push(new Message(
+                            message.content,
+                            message.user.lastName,
+                            message._id,
+                            message.user._id)
+                        );
+                    }
                 }
                 this.messages = transformedMessages;
                 return transformedMessages;

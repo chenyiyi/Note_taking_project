@@ -10,19 +10,21 @@ import { AuthService } from "./auth/auth.service";
 import { ErrorComponent } from "./errors/error.component";
 import { ErrorService } from "./errors/error.service";
 import { MessageModule } from "./messages/message.module";
+import { ProfileModule } from "./admin/profile.module";
 
 @NgModule({
     declarations: [
         AppComponent,
         AuthenticationComponent,
         HeaderComponent,
-        ErrorComponent
+        ErrorComponent,
     ],
     imports: [
         BrowserModule,
         routing,
         HttpModule,
-        MessageModule
+        MessageModule,
+        ProfileModule
     ],
     providers: [AuthService, ErrorService],
     bootstrap: [AppComponent]

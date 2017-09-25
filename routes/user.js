@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-
 var User = require('../models/user');
+
 
 router.post('/', function (req, res, next) {
     var user = new User({
@@ -26,7 +26,7 @@ router.post('/', function (req, res, next) {
     });
 });
 
-router.post('/signin', function(req, res, next) {
+router.post('/signin', function(req, res, next){
     User.findOne({email: req.body.email}, function(err, user) {
         if (err) {
             return res.status(500).json({
@@ -52,6 +52,17 @@ router.post('/signin', function(req, res, next) {
             token: token,
             userId: user._id
         });
+    });
+});
+
+router.post('/check', function(req, res, next){
+    const token = req.body.token;
+    const user = req.body.user;
+    const decoded = jwt.decode(token);
+    res.status(200).json({
+        message: 'Successfully logged in',
+        token: token,
+        user: user,
     });
 });
 

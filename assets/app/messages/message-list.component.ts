@@ -25,5 +25,9 @@ export class MessageListComponent implements OnInit {
                     this.messages = messages;
                 }
             );
+        this.messageService.messageNeedDelete
+            .subscribe(
+                (message: Message) => this.messageService.deleteMessage(message)
+            )
     }
 }

@@ -1,0 +1,51 @@
+<div class="profile">
+  <div class="panel-body">
+      {{ profile.lastName }}
+    </div>
+    <footer class="panel-footer">
+      <div class="author">
+        Last Name
+      </div>
+      <div (click)="lastNameEdit()" class="config">
+        <a >Edit</a>
+      </div>
+    </footer>
+
+    <div class="panel-body">
+      {{ profile.firstName }}
+    </div>
+    <footer class="panel-footer">
+      <div class="author">
+        First Name
+      </div>
+      <div (click)="firstNameEdit()" class="config">
+        <a >Edit</a>
+      </div>
+    </footer>
+
+    <div class="panel-body">
+      {{ profile.email }}
+    </div>
+    <footer class="panel-footer">
+      <div class="author">
+        Email
+      </div>
+      <div (click)="emailEdit()" class="config">
+        <a >Edit</a>
+      </div>
+    </footer>
+
+    <div class="panel-body">
+      {{ profile.password }}
+    </div>
+    <footer class="panel-footer">
+      <div class="author">
+        Password
+      </div>
+      <div (click)="passwordEdit()" class="config">
+        <a >Edit</a>
+      </div>
+    </footer>
+
+    <button type="button" class="btn-danger" (click)="onDelete()">Delete</button>
+</div>
